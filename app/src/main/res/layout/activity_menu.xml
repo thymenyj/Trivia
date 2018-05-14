@@ -7,9 +7,31 @@
     android:orientation="vertical"
     tools:context=".MenuActivity">
 
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="30dp"
+        android:layout_weight="1"
+        android:text="TRIVIA"
+        android:textSize="40sp" />
+
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/play"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:layout_margin="30dp"
+        android:layout_weight="3"
+        android:text="PLAY"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/highscores"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:layout_weight="3"
+        android:text="HIGHSCORES"
+        android:textSize="24sp" />
 </LinearLayout>

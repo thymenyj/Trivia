@@ -66,9 +66,10 @@ public class TriviaHelper implements Response.Listener<JSONObject>, Response.Err
             String correctAnswer = object.getString("answer");
             questionItem.setCorrectAnswer(correctAnswer);
 
+            // get two random other answers
             String wrongAnswer1 = correctAnswer;
             String wrongAnswer2 = correctAnswer;
-            // get two random other answers
+
             while (wrongAnswer1 == correctAnswer) {
                 int random1 = ThreadLocalRandom.current().nextInt(0, length);
                 JSONObject wrongObject1 = clues.getJSONObject(random1);
