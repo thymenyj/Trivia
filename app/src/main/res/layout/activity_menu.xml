@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@android:color/white"
     tools:context=".MenuActivity">
 
     <TextView
@@ -15,23 +16,42 @@
         android:layout_margin="30dp"
         android:layout_weight="1"
         android:text="TRIVIA"
+        android:textColor="@android:color/holo_blue_dark"
         android:textSize="40sp" />
 
     <Button
         android:id="@+id/play"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_margin="30dp"
         android:layout_weight="3"
         android:text="PLAY"
+        android:background="@android:color/holo_green_dark"
+        android:textColor="@android:color/white"
         android:textSize="24sp" />
 
     <Button
         android:id="@+id/highscores"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_margin="30dp"
         android:layout_weight="3"
         android:text="HIGHSCORES"
+        android:background="@android:color/holo_orange_dark"
+        android:textColor="@android:color/white"
         android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/signOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_weight="0"
+        android:background="@android:color/holo_red_light"
+        android:textColor="@android:color/white"
+        android:text="SIGN OUT" />
 </LinearLayout>
