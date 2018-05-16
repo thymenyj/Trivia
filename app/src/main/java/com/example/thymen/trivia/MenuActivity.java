@@ -14,7 +14,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         Button play = findViewById(R.id.play);
-//        Button highscores = findViewById(R.id.highscores);
+        Button highscores = findViewById(R.id.highscores);
 
         play.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -24,15 +24,14 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-//        highscores.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MenuActivity.this, HighscoreActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        highscores.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MenuActivity.this, HighscoreActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
-
-
 }
