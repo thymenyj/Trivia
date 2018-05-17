@@ -1,6 +1,5 @@
 package com.example.thymen.trivia;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -46,9 +45,9 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-        loginName = findViewById(R.id.loginName);
-        loginPassword = findViewById(R.id.loginPassword);
-        login = findViewById(R.id.loginLogin);
+        loginName = findViewById(R.id.name1);
+        loginPassword = findViewById(R.id.name2);
+        login = findViewById(R.id.startGame);
         register = findViewById(R.id.loginRegister);
 
 //        FirebaseUser user = FirebaseAuth.getCurrentUser();

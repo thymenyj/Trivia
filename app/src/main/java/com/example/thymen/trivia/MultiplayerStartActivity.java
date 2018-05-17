@@ -1,24 +1,42 @@
 package com.example.thymen.trivia;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class MultiplayerStartActivity extends AppCompatActivity {
-    public Button startGame;
-    public EditText namePlayer1, namePlayer2, namePlayer3;
+    public int amount;
+    public EditText count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multiplayer_start);
 
-        startGame = findViewById(R.id.startGame);
-        namePlayer1 = findViewById(R.id.namePlayer1);
-        namePlayer2 = findViewById(R.id.namePlayer2);
-        namePlayer3 = findViewById(R.id.namePlayer3);
+        count = findViewById(R.id.amount);
+        Button startGame = findViewById(R.id.startGame);
 
 
+        startGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!count.getText().toString().isEmpty()) {
+                    String number = count.getText().toString();
+                    amount = Integer.parseInt(number);
+                }
+                else {
+                    amount = 10;
+                }
+                Intent intent = new Intent(MultiplayerStartActivity.this, MultiplayerGameActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt("amount", amount);
+                intent.putExtra("bundle", bundle);
+                startActivity(intent);
+            }
+        });
     }
 }

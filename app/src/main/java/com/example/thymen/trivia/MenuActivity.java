@@ -17,6 +17,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         Button play = findViewById(R.id.play);
+        Button multiplayer = findViewById(R.id.multiplayer);
         Button highscores = findViewById(R.id.highscores);
         Button signOut = findViewById(R.id.signOut);
 
@@ -36,6 +37,14 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MenuActivity.this, GameActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        multiplayer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MenuActivity.this, MultiplayerStartActivity.class);
                 startActivity(intent);
             }
         });

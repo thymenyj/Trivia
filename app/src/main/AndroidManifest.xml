@@ -26,6 +26,16 @@
         <activity android:name=".HighscoreActivity" />
         <activity android:name=".MenuActivity" />
         <activity android:name=".RegisterActivity" />
+        <activity
+            android:name=".MultiplayerGameActivity"
+            android:label="MultiplayerGame">
+            <intent-filter>
+                <action android:name="com.example.package_path.MultiplayerGameActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MultiplayerScore" />
         <activity android:name=".MultiplayerStartActivity"></activity>
     </application>
 
