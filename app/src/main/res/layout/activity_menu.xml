@@ -26,8 +26,20 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="30dp"
         android:layout_weight="3"
-        android:text="PLAY"
         android:background="@android:color/holo_green_dark"
+        android:text="SINGLEPLAYER"
+        android:textColor="@android:color/white"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/play"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="30dp"
+        android:layout_weight="3"
+        android:background="@android:color/holo_purple"
+        android:text="MULTIPLAYER"
         android:textColor="@android:color/white"
         android:textSize="24sp" />
 
