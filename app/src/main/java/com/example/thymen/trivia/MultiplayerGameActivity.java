@@ -37,21 +37,15 @@ public class MultiplayerGameActivity extends AppCompatActivity implements Trivia
         }
 
         gameCounter = startAmount;
-
-        counter = findViewById(R.id.counter);
-        counter.setText("" + gameCounter);
-
         player1 = "Player 1";
         player2 = "Player 2";
-
+        scoreCount1 = 0;
+        scoreCount2 = 0;
 
         playerTurn = findViewById(R.id.playerTurn);
         playerTurn.setText(player1);
-
-
-        // set score to zero when game starts
-        scoreCount1 = 0;
-        scoreCount2 = 0;
+        counter = findViewById(R.id.counter);
+        counter.setText("" + gameCounter);
 
         questionLine = findViewById(R.id.question);
         answer1 = findViewById(R.id.answer1);

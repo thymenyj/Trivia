@@ -1,6 +1,5 @@
 package com.example.thymen.trivia;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +21,6 @@ public class LoginActivity extends AppCompatActivity {
     public EditText loginName, loginPassword;
     public FirebaseAuth firebaseAuth;
     public FirebaseAuth.AuthStateListener authStateListener;
-    public ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +42,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
 
-
-
-
-        loginName = findViewById(R.id.name1);
-        loginPassword = findViewById(R.id.name2);
+        loginName = findViewById(R.id.email);
+        loginPassword = findViewById(R.id.password);
         login = findViewById(R.id.startGame);
         register = findViewById(R.id.loginRegister);
 
@@ -63,13 +58,14 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!loginName.getText().toString().isEmpty() || !loginPassword.getText().toString().isEmpty()) {
+                if (loginName.getText().toString().isEmpty() || loginPassword.getText().toString().isEmpty()) {
+                    Toast.makeText(LoginActivity.this, "please enter email and password", Toast.LENGTH_SHORT).show();
+                }
+                else {
                     String password = loginPassword.getText().toString();
                     String name = loginName.getText().toString();
                     validate(name, password);
-                }
-                else {
-                    Toast.makeText(LoginActivity.this, "please enter email and password", Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
@@ -90,7 +86,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void validate(String username, String password) {
-
         firebaseAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {

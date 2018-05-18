@@ -11,6 +11,7 @@ import android.widget.TextView;
 public class MultiplayerStartActivity extends AppCompatActivity {
     public int amount;
     public EditText count;
+    public Button startGame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +19,7 @@ public class MultiplayerStartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_multiplayer_start);
 
         count = findViewById(R.id.amount);
-        Button startGame = findViewById(R.id.startGame);
+        startGame = findViewById(R.id.startGame);
 
 
         startGame.setOnClickListener(new View.OnClickListener() {

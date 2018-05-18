@@ -10,16 +10,17 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MenuActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
+    private Button play, multiplayer, highscores, signOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        Button play = findViewById(R.id.play);
-        Button multiplayer = findViewById(R.id.multiplayer);
-        Button highscores = findViewById(R.id.highscores);
-        Button signOut = findViewById(R.id.signOut);
+        play = findViewById(R.id.play);
+        multiplayer = findViewById(R.id.multiplayer);
+        highscores = findViewById(R.id.highscores);
+        signOut = findViewById(R.id.signOut);
 
         firebaseAuth = FirebaseAuth.getInstance();
 

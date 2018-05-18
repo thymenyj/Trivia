@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/androidbackground"
+    android:scaleType="fitXY"
     android:orientation="vertical"
-    android:background="@android:color/white"
     tools:context=".MenuActivity">
 
     <TextView
@@ -16,7 +17,7 @@
         android:layout_margin="30dp"
         android:layout_weight="1"
         android:text="TRIVIA"
-        android:textColor="@android:color/holo_blue_dark"
+        android:textColor="@android:color/white"
         android:textSize="40sp" />
 
     <Button

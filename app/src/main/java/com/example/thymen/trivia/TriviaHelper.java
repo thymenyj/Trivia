@@ -32,7 +32,6 @@ public class TriviaHelper implements Response.Listener<JSONObject>, Response.Err
         void gotError(String message);
     }
 
-
     public TriviaHelper(Context context) {
         this.context = context;
     }
@@ -40,6 +39,8 @@ public class TriviaHelper implements Response.Listener<JSONObject>, Response.Err
     public void getNextQuestion(Callback activity) {
         this.activity = activity;
         RequestQueue queue = Volley.newRequestQueue(context);Random r = new Random();
+
+        // takes random integer and creates a random category request
         int random = ThreadLocalRandom.current().nextInt(0, 3000);
         String url = "http://jservice.io/api/category?id=" + random;
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, null,this, this);

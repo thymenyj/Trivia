@@ -51,7 +51,6 @@ public class GameActivity extends AppCompatActivity implements TriviaHelper.Call
         answer2 = findViewById(R.id.answer2);
         answer3 = findViewById(R.id.answer3);
         quit = findViewById(R.id.quit);
-
         score = findViewById(R.id.numberScore);
 
         TriviaHelper triviaHelper = new TriviaHelper(this);
@@ -62,17 +61,10 @@ public class GameActivity extends AppCompatActivity implements TriviaHelper.Call
             @Override
             public void onClick(View v) {
                 if (answer1.getText() == correct) {
-                    scoreCount = scoreCount + 1;
-                    score.setText("" + scoreCount);
-                    Toast.makeText(GameActivity.this, "correct", Toast.LENGTH_SHORT).show();
-                    TriviaHelper triviaHelper = new TriviaHelper(getApplicationContext());
-                    triviaHelper.getNextQuestion(GameActivity.this);
+                    checkCorrectAnswer();
                 }
                 else {
-                    Toast.makeText(GameActivity.this, "wrong, game over", Toast.LENGTH_SHORT).show();
-                    updateHighscore();
-                    Intent intent = new Intent(GameActivity.this, MenuActivity.class);
-                    startActivity(intent);
+                    checkWrongAnswer();
                 }
 
             }
@@ -83,17 +75,10 @@ public class GameActivity extends AppCompatActivity implements TriviaHelper.Call
             @Override
             public void onClick(View v) {
                 if (answer2.getText() == correct) {
-                    scoreCount = scoreCount + 1;
-                    score.setText("" + scoreCount);
-                    Toast.makeText(GameActivity.this, "correct", Toast.LENGTH_SHORT).show();
-                    TriviaHelper triviaHelper = new TriviaHelper(getApplicationContext());
-                    triviaHelper.getNextQuestion(GameActivity.this);
+                    checkCorrectAnswer();
                 }
                 else {
-                    Toast.makeText(GameActivity.this, "wrong, game over", Toast.LENGTH_SHORT).show();
-                    updateHighscore();
-                    Intent intent = new Intent(GameActivity.this, MenuActivity.class);
-                    startActivity(intent);
+                    checkWrongAnswer();
                 }
             }
         });
@@ -103,17 +88,10 @@ public class GameActivity extends AppCompatActivity implements TriviaHelper.Call
             @Override
             public void onClick(View v) {
                 if (answer3.getText() == correct) {
-                    scoreCount = scoreCount + 1;
-                    score.setText("" + scoreCount);
-                    Toast.makeText(GameActivity.this, "correct", Toast.LENGTH_SHORT).show();
-                    TriviaHelper triviaHelper = new TriviaHelper(getApplicationContext());
-                    triviaHelper.getNextQuestion(GameActivity.this);
+                    checkCorrectAnswer();
                 }
                 else {
-                    Toast.makeText(GameActivity.this, "wrong, game over", Toast.LENGTH_SHORT).show();
-                    updateHighscore();
-                    Intent intent = new Intent(GameActivity.this, MenuActivity.class);
-                    startActivity(intent);
+                    checkWrongAnswer();
                 }
             }
         });
@@ -121,41 +99,14 @@ public class GameActivity extends AppCompatActivity implements TriviaHelper.Call
         quit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ValueEventListener postListener = new ValueEventListener() {
-
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        // check highscore in database
-                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                        String userId = user.getUid();
-
-                        Highscore highscoreItem = dataSnapshot.child("highscores").child(userId).getValue(Highscore.class);
-                        int highscore = highscoreItem.getScore();
-                        String name = highscoreItem.getName();
-                        // if current score is higher update highscore user
-                        if (scoreCount > highscore) {
-                            Highscore update = new Highscore();
-                            update.setName(name);
-                            update.setScore(scoreCount);
-                            database.child("highscores").child(userId).setValue(update);
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        Log.d("TAG", "something went wrong", databaseError.toException());
-                    }
-                };
-                database.addValueEventListener(postListener);
-
-            Intent intent = new Intent(GameActivity.this, MenuActivity.class);
-            startActivity(intent);
+                updateHighscore();
             }
         });
 
     }
 
     public void gotQuestion(Question question) {
+
         // update correct variable to check answersClicked
         correct = question.getCorrectAnswer();
 
@@ -167,7 +118,6 @@ public class GameActivity extends AppCompatActivity implements TriviaHelper.Call
         answer1.setText(answers.get(0));
         answer2.setText(answers.get(1));
         answer3.setText(answers.get(2));
-
     }
 
     @Override
@@ -205,6 +155,21 @@ public class GameActivity extends AppCompatActivity implements TriviaHelper.Call
         };
         database.addValueEventListener(postListener);
 
+        Intent intent = new Intent(GameActivity.this, MenuActivity.class);
+        startActivity(intent);
+    }
+
+    public void checkCorrectAnswer() {
+        scoreCount = scoreCount + 1;
+        score.setText("" + scoreCount);
+        Toast.makeText(GameActivity.this, "correct", Toast.LENGTH_SHORT).show();
+        TriviaHelper triviaHelper = new TriviaHelper(getApplicationContext());
+        triviaHelper.getNextQuestion(GameActivity.this);
+    }
+
+    public void checkWrongAnswer() {
+        Toast.makeText(GameActivity.this, "wrong, game over", Toast.LENGTH_SHORT).show();
+        updateHighscore();
         Intent intent = new Intent(GameActivity.this, MenuActivity.class);
         startActivity(intent);
     }
