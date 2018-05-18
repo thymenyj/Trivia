@@ -1,5 +1,6 @@
 package com.example.thymen.trivia;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     public EditText loginName, loginPassword;
     public FirebaseAuth firebaseAuth;
     public FirebaseAuth.AuthStateListener authStateListener;
+    public ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +52,6 @@ public class LoginActivity extends AppCompatActivity {
         login = findViewById(R.id.startGame);
         register = findViewById(R.id.loginRegister);
 
-//        FirebaseUser user = FirebaseAuth.getCurrentUser();
-
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,9 +63,14 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String password = loginPassword.getText().toString();
-                String name = loginName.getText().toString();
-                validate(name, password);
+                if (!loginName.getText().toString().isEmpty() || !loginPassword.getText().toString().isEmpty()) {
+                    String password = loginPassword.getText().toString();
+                    String name = loginName.getText().toString();
+                    validate(name, password);
+                }
+                else {
+                    Toast.makeText(LoginActivity.this, "please enter email and password", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -85,9 +90,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void validate(String username, String password) {
-
-//        ProgressDialog.setMessage("Logging in");
-//        ProgressDialog.show();
 
         firebaseAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
